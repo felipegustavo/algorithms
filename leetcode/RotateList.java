@@ -15,20 +15,17 @@ public class RotateList {
             return head;
         }
     
-        int size = 0;
+        int size = 1;
         ListNode temp = head;
-        while (temp != null) {
+        while (temp.next != null) {
             size++;
             temp = temp.next;
         }
+        ListNode end = temp;
         
-        if (k == size) {
+        k %= size;
+        if (k == 0) {
             return head;
-        } else if (k > size) {
-            k %= size;
-            if (k == 0) {
-                return head;
-            }
         }
         
         int diff = size - k - 1;
@@ -39,17 +36,11 @@ public class RotateList {
         }
         
         ListNode start = temp.next;
-        ListNode end = start;
-        
-        while (end.next != null) {
-            end = end.next;
-        }
-        
         temp.next = null;
         end.next = head;
         head = start;
         
         return head;
-    }
+    }    
 
 }
